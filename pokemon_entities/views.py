@@ -1,5 +1,3 @@
-from contextlib import suppress
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 
@@ -29,11 +27,10 @@ def add_pokemon(folium_map, lat, lon, image_url=DEFAULT_IMAGE_URL):
 
 
 def show_all_pokemons(request):
-    pokemon_entities = PokemonEntity.objects.all()
+    pokemon_entities = PokemonEntity.objects.select_related('pokemon').all()
     all_pokemons = Pokemon.objects.all()
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-
     for pokemon_entity in pokemon_entities:
         try:
             image_url = request.build_absolute_uri(pokemon_entity.pokemon.image.url)
@@ -58,10 +55,10 @@ def show_all_pokemons(request):
             'title_ru': pokemon.title,
         })
 
-        return render(request, 'mainpage.html', context={
-            'map': folium_map._repr_html_(),
-            'pokemons': pokemons_on_page,
-        })
+    return render(request, 'mainpage.html', context={
+        'map': folium_map._repr_html_(),
+        'pokemons': pokemons_on_page,
+    })
 
 
 def show_pokemon(request, pokemon_id):
