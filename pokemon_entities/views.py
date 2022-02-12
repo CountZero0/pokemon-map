@@ -56,7 +56,7 @@ def show_all_pokemons(request):
         pokemons_on_page.append({
             'pokemon_id': pokemon.id,
             'img_url': image_url,
-            'title': pokemon.title,
+            'title_ru': pokemon.title,
         })
 
     return render(request, 'mainpage.html', context={
