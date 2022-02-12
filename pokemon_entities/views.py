@@ -1,3 +1,5 @@
+from contextlib import suppress
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 
@@ -95,6 +97,14 @@ def show_pokemon(request, pokemon_id):
             'title_ru': requested_pokemon.evolution_from.title,
             'pokemon_id': requested_pokemon.evolution_from.id,
             'img_url': requested_pokemon.evolution_from.image.url
+        }
+
+    next_evolution = requested_pokemon.next_evolutions.first()
+    if next_evolution:
+        pokemon['next_evolution'] = {
+            'title_ru': next_evolution.title,
+            'pokemon_id': next_evolution.id,
+            'img_url': next_evolution.image.url
         }
 
     return render(request, 'pokemon.html', context={
