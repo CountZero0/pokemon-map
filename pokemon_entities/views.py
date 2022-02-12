@@ -5,7 +5,6 @@ import folium
 
 from pokemon_entities.models import Pokemon, PokemonEntity
 
-
 MOSCOW_CENTER = [55.751244, 37.618423]
 DEFAULT_IMAGE_URL = (
     'https://vignette.wikia.nocookie.net/pokemon/images/6/6e/%21.png/revision'
@@ -73,7 +72,7 @@ def show_pokemon(request, pokemon_id):
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
-    requested_pokemon_entities = PokemonEntity.objects.all()
+    requested_pokemon_entities = requested_pokemon.pokemons.all()
 
     for pokemon_entity in requested_pokemon_entities:
         add_pokemon(
@@ -90,6 +89,13 @@ def show_pokemon(request, pokemon_id):
         'img_url': request.build_absolute_uri(requested_pokemon.image.url),
         'description': requested_pokemon.description
     }
+
+    if requested_pokemon.evolution_from:
+        pokemon['previous_evolution'] = {
+            'title_ru': requested_pokemon.evolution_from.title,
+            'pokemon_id': requested_pokemon.evolution_from.id,
+            'img_url': requested_pokemon.evolution_from.image.url
+        }
 
     return render(request, 'pokemon.html', context={
         'map': folium_map._repr_html_(), 'pokemon': pokemon
