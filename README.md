@@ -1,43 +1,39 @@
-# Карта покемонов
+# Pokemon map 
 
-![screenshot](https://dvmn.org/filer/canonical/1563275070/172/)
+![screenshot](https://dvmn.org/filer/canonical/1563275070/172/) 
 
-### Предметная область
+### Subject area 
 
-Сайт для помощи по игре [Pokemon GO](https://www.pokemongo.com/en-us/). Это игра про ловлю [покемонов](https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%BA%D0%B5%D0%BC%D0%BE%D0%BD).
+Site is maid to help with game [Pokemon GO](https://www.pokemongo.com/ en-us/). This is a game about catching [Pokemon] 
 
-Суть игры в том, что на карте периодически появляются покемоны, на определённый промежуток времени. Каждый игрок может поймать себе покемона, и пополнить свою личную коллекцию.
+The essence of the game is that Pokémon periodically appear on the map for a certain period of time. Each player can catch a Pokémon and add to their personal collection. 
 
-На карте может быть сразу несколько особей одного и того же покемона: например, 3 Бульбазавра. Каждую особь могут поймать сразу несколько игроков. Если игрок поймал себе особь покемона, она исчезает для него, но остаётся для других.
+There can be several individuals of the same Pokémon on the map at once: for example, 3 Bulbasaur. Each individual can be caught by several players at once. If a player has caught a Pokémon specimen, it disappears for him, but remains for others.
 
-В игре есть механика эволюции. Покемон одного вида может "эволюционировать" в другого. Так, например, Бульбазавр превращается в Ивизавра, а тот превращается в Венузавра.
+The game has an evolution mechanic. Pokémon of one kind can "evolve" into another. So, for example, Bulbasaur turns into Ivysaur, and he turns into Venusaur. 
 
-![bulba evolution](https://dvmn.org/filer/canonical/1562265973/167/)
+![bulba evolution](https://dvmn.org/filer/canonical/1562265973/167/) 
 
-### Как запустить
+### How to run 
 
-Для запуска сайта вам понадобится Python третьей версии.
+To run the site you need Python 3. 
 
-Скачайте код с GitHub. Затем установите зависимости
+Download the code from GitHub. Then install dependencies 
 
-```sh
-pip install -r requirements.txt
-```
+```sh 
+pip install -r requirements.txt 
+``` 
 
-Запустите разработческий сервер
+Run the development server 
 
-```sh
-python3 manage.py runserver
-```
+```sh 
+python3 manage.py runserver 
+``` 
 
-### Переменные окружения
+### Environment Variables
 
-Часть настроек проекта берётся из переменных окружения. Чтобы их определить, создайте файл `.env` рядом с `manage.py` и запишите туда данные в таком формате: `ПЕРЕМЕННАЯ=значение`.
+Part of the project settings are taken from the environment variables. To define them, create a `.env` file next to `manage.py` and write data there in the following format: `VARIABLE=value`. 
 
-Доступны 2 переменные:
-- `DEBUG` — дебаг-режим. Поставьте True, чтобы увидеть отладочную информацию в случае ошибки.
-- `SECRET_KEY` — секретный ключ проекта
-
-## Цели проекта
-
-Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
+2 variables are available: 
+- `DEBUG` — debug mode. Set to True to see debug information in case of an error. 
+- `SECRET_KEY` is the secret key of the project 
